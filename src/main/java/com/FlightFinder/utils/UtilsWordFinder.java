@@ -137,7 +137,6 @@ public enum UtilsWordFinder {
         return 0;
       }
 
-
       // more than 100
       if (input.length() > 100) {
         return 0;

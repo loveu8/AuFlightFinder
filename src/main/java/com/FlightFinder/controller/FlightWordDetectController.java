@@ -18,7 +18,7 @@ public class FlightWordDetectController {
      */
     @GetMapping("/api/flightWordDetect")
     public String flightWordDetect(@RequestParam String detectWord) {
-      // 呼叫工具列舉中的 findFlight 方法進行計算
+      // check how many
       int count = UtilsWordFinder.un.findSameWord("flight",detectWord);
       return "Your word can ba a \"flight\" count will be：" + count;
     }
