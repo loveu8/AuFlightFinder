@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Application named “Flight Finder” with the goal of determining how many instances of the word
+ * Application named “Flight Finder” with the goal of 
+ * determining how many instances of the word
  * “flight” are possible in a supplied string.
  * 
  * @author DongHuei Jhu
  * @version 16/04/2025 1.0
- * @Test Test_UtilsFlightFinder.java
+ * @Test Test_UtilsWordFinder.java
  */
 public enum UtilsWordFinder {
 
