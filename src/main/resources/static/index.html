@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Detect</title>
+</head>
+<body>
+  <h1>Flight Detect</h1>
+  <!-- The input field restricts the input to lowercase letters only (a-z) and a maximum length of 100 characters -->
+  <input type="text"
+         id="detectInput"
+         placeholder="Enter text (lowercase only, max 100 characters)"
+         maxlength="100"
+         pattern="^[a-z]*$"
+         title="Please enter only lowercase letters (a-z) and limit to 100 characters">
+  <button onclick="detect()">Submit</button>
+  <p id="result"></p>
+
+  <script>
+    function detect() {
+      const inputElement = document.getElementById("detectInput");
+      const detectWord = inputElement.value;
+
+      // Validate input using HTML5 validation
+      if (!inputElement.checkValidity()) {
+        alert(inputElement.title);
+        return;
+      }
+
+      // Send GET request to the API with the detectWord parameter
+      fetch("/api/flightWordDetect?detectWord=" + encodeURIComponent(detectWord))
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("result").innerText = data;
+        })
+        .catch(error => {
+          document.getElementById("result").innerText = "Error: " + error;
+        });
+    }
+
+    // Trigger detect() when the Enter key is pressed
+    document.getElementById("detectInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        detect();
+      }
+    });
+  </script>
+</body>
+</html>
