@@ -2,23 +2,37 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Detect Flight</title>
+  <title>Detect Word</title>
 </head>
 <body>
-  <h1>Detect "Flight"</h1>
+  <h1>Detect "Word"</h1>
   <!-- The input field restricts the input to lowercase letters only (a-z) and a maximum length of 100 characters -->
+  <label>Check Word</label>
+  <input type="text"
+         id="checkInput"
+         placeholder="Enter text (lowercase only, max 100 characters)"
+         maxlength="100"
+         pattern="^[a-z]*$"
+         title="Please enter only lowercase letters (a-z) and limit to 100 characters">
+  <!-- The input field restricts the input to lowercase letters only (a-z) and a maximum length of 100 characters -->
+  <br/>
+  <label>Detect Word</label>
   <input type="text"
          id="detectInput"
          placeholder="Enter text (lowercase only, max 100 characters)"
          maxlength="100"
          pattern="^[a-z]*$"
          title="Please enter only lowercase letters (a-z) and limit to 100 characters">
+  <br/>       
   <button onclick="detect()">Submit</button>
   <p id="result"></p>
 
   <script>
     function detect() {
+    	
+      const inputChkElement = document.getElementById("checkInput"); 	
       const inputElement = document.getElementById("detectInput");
+      const checkWord = inputChkElement.value;
       const detectWord = inputElement.value;
 
       // Validate input using HTML5 validation
@@ -27,8 +41,8 @@
         return;
       }
 
-      // Send GET request to the API with the detectWord parameter
-      fetch("/api/flightWordDetect?detectWord=" + encodeURIComponent(detectWord))
+      // Send GET request to the API with the checkWord and detectWord parameter
+      fetch("/api/wordDetect?checkWord=" +encodeURIComponent(checkWord) + "&detectWord=" + encodeURIComponent(detectWord))
         .then(response => response.text())
         .then(data => {
           document.getElementById("result").innerText = data;
@@ -47,4 +61,3 @@
   </script>
 </body>
 </html>
-

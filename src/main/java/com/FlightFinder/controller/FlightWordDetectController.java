@@ -11,7 +11,7 @@ public class FlightWordDetectController {
     /**
      * API Endpoint: /api/flightWordDetect?detectWord={input}
      * 
-     * Call UtilsWordFinder.un.flightWordDetect() to count "flight" how many times
+     * Call UtilsWordFinder.un.findSameWord() to count "flight" how many times
      *
      * @param detectWord user input
      * @return flight timers
@@ -21,5 +21,21 @@ public class FlightWordDetectController {
       // check how many
       int count = UtilsWordFinder.un.findSameWord("flight",detectWord);
       return "Your word can ba a \"flight\" count will be：" + count;
+    }
+    
+    /**
+     * API Endpoint: /api/flightWordDetect?detectWord={input}
+     * 
+     * Call UtilsWordFinder.un.findSameWord() to count "checkWord" how many times
+     *
+     * @param checkWord user input
+     * @param detectWord user input
+     * @return checkWord timers
+     */
+    @GetMapping("/api/wordDetect")
+    public String wordDetect(@RequestParam String checkWord, @RequestParam String detectWord) {
+      // check how many
+      int count = UtilsWordFinder.un.findSameWord(checkWord,detectWord);
+      return "Your word can ba a \""+checkWord+"\" count will be：" + count;
     }
 }

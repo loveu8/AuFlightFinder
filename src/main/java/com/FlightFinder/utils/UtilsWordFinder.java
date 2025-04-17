@@ -2,6 +2,8 @@ package com.FlightFinder.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Application named “Flight Finder” with the goal of 
@@ -9,13 +11,14 @@ import java.util.Map;
  * “flight” are possible in a supplied string.
  * 
  * @author DongHuei Jhu
- * @version 16/04/2025 1.0
+ * @version 17/04/2025 1.1
  * @Test Test_UtilsWordFinder.java
  */
 public enum UtilsWordFinder {
 
   un;
   
+  private static final Logger logger = LoggerFactory.getLogger(UtilsWordFinder.class);
   
   /**
    * <pre>
@@ -106,9 +109,10 @@ public enum UtilsWordFinder {
       // final result
       total = countCheckWordfreq.get(minKey);
     } catch (Exception e){
+      logger.error(e.getMessage());
       e.printStackTrace();
     }
-    System.out.println("checkWord : " + checkWord + ",detectWord : " + detectWord
+    logger.debug("checkWord : " + checkWord + ",detectWord : " + detectWord
         + ",\ncheckWordfreq:" + checkWordfreq 
         + ",\ncountDetectWordfreq:" + countDetectWordfreq
         + ",\ncountCheckWordfreq:" + countCheckWordfreq);
@@ -218,10 +222,12 @@ public enum UtilsWordFinder {
           total++;
         }
       }
-      System.out.println("final Input : " + input + ", find : " + total);
     } catch (Exception e) {
-
+      logger.error(e.getMessage());
+      e.printStackTrace();
     }
+    
+    logger.debug("final Input : " + input + ", find : " + total);
     return total;
   }
 
